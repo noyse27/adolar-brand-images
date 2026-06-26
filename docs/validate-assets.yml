@@ -1,0 +1,21 @@
+name: Validate Brand Assets
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: List assets
+        run: |
+          find . -maxdepth 3 -type f | sort
+
+      - name: Check SVG files are present
+        run: |
+          test -f logo/adolar-logo.svg
+          test -f rocket/rocket-mz1.svg

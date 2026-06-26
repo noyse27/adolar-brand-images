@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Adolar MZ-1 Webplayer Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../web/adolar-rocket.css">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #070D22;
+      color: #D9CCFF;
+      font-family: Orbitron, system-ui, sans-serif;
+    }
+
+    main {
+      width: min(720px, 92vw);
+      text-align: center;
+    }
+
+    .status-card {
+      border: 1px solid rgba(217, 204, 255, .18);
+      border-radius: 24px;
+      padding: 32px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    button {
+      font: inherit;
+      color: #070D22;
+      background: #D9CCFF;
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="status-card">
+      <h1>Adolar MZ-1 Demo</h1>
+      <p id="state-label">Status: idle</p>
+
+      <object id="rocket-object" data="../../animations/rocket-mz1-states.svg" type="image/svg+xml" width="160" height="160"></object>
+
+      <div class="controls">
+        <button data-state="idle">Idle</button>
+        <button data-state="loading">Loading</button>
+        <button data-state="playing">Playing</button>
+        <button data-state="paused">Paused</button>
+        <button data-state="error">Error</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const object = document.querySelector("#rocket-object");
+    const label = document.querySelector("#state-label");
+
+    function setState(state) {
+      label.textContent = `Status: ${state}`;
+
+      const svg = object.contentDocument?.querySelector("svg");
+      if (svg) {
+        svg.dataset.state = state;
+      }
+    }
+
+    object.addEventListener("load", () => setState("idle"));
+
+    document.querySelectorAll("button[data-state]").forEach((button) => {
+      button.addEventListener("click", () => setState(button.dataset.state));
+    });
+  </script>
+</body>
+</html>
