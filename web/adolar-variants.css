@@ -1,0 +1,42 @@
+/* Adolar Brand Variant Tokens */
+
+:root,
+[data-adolar-variant="adolar"] {
+  --adolar-accent: #31D5FF;
+  --adolar-bg: #070D22;
+  --adolar-text: #D9CCFF;
+  --adolar-violet-dark: #4F2EC8;
+  --adolar-violet: #6E44FF;
+  --adolar-lavender: #A98BFF;
+}
+
+[data-adolar-variant="radio"] { --adolar-accent: #FF9500; }
+[data-adolar-variant="disco"] { --adolar-accent: #31D5FF; }
+[data-adolar-variant="tv"] { --adolar-accent: #FF4D6D; }
+[data-adolar-variant="player"] { --adolar-accent: #8B5CFF; }
+[data-adolar-variant="core"] { --adolar-accent: #7CFFB2; }
+
+.adolar-project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  color: var(--adolar-text);
+  font-family: Orbitron, system-ui, sans-serif;
+  letter-spacing: .06em;
+}
+
+.adolar-project-dot {
+  width: .75rem;
+  height: .75rem;
+  border-radius: 999px;
+  background: var(--adolar-accent);
+  box-shadow: 0 0 1.5rem color-mix(in srgb, var(--adolar-accent), transparent 45%);
+}
+
+.adolar-project-panel {
+  border: 1px solid color-mix(in srgb, var(--adolar-accent), transparent 70%);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--adolar-accent), transparent 82%), transparent 35%),
+    rgba(255,255,255,.04);
+  border-radius: 1.5rem;
+}

@@ -1,0 +1,38 @@
+{
+  "adolar": {
+    "displayName": "Adolar",
+    "accent": "#31D5FF",
+    "symbol": "",
+    "description": "Master brand for the Adolar universe."
+  },
+  "radio": {
+    "displayName": "Adolar Radio",
+    "accent": "#FF9500",
+    "symbol": "♪",
+    "description": "Radio and stream-focused Adolar project variant."
+  },
+  "disco": {
+    "displayName": "Adolar Disco",
+    "accent": "#31D5FF",
+    "symbol": "◎",
+    "description": "Disco, playlist and party-mode Adolar project variant."
+  },
+  "tv": {
+    "displayName": "Adolar TV",
+    "accent": "#FF4D6D",
+    "symbol": "▶",
+    "description": "Video and TV-focused Adolar project variant."
+  },
+  "player": {
+    "displayName": "Adolar Player",
+    "accent": "#8B5CFF",
+    "symbol": "▶",
+    "description": "Generic WebMediaPlayer variant."
+  },
+  "core": {
+    "displayName": "Adolar Core",
+    "accent": "#7CFFB2",
+    "symbol": "{}",
+    "description": "Core, framework and developer tooling variant."
+  }
+}
