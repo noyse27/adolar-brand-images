@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220">
+  <style>
+    text { font-family: "Orbitron", "Segoe UI", sans-serif; font-size: 18px; fill: #15113D; }
+  </style>
+  <rect x="0" y="0" width="900" height="220" fill="#fff"/>
+  <g transform="translate(40 40)">
+    <rect width="110" height="80" rx="16" fill="#4F2EC8"/><text x="0" y="112">#4F2EC8</text>
+  </g>
+  <g transform="translate(190 40)">
+    <rect width="110" height="80" rx="16" fill="#6E44FF"/><text x="0" y="112">#6E44FF</text>
+  </g>
+  <g transform="translate(340 40)">
+    <rect width="110" height="80" rx="16" fill="#A98BFF"/><text x="0" y="112">#A98BFF</text>
+  </g>
+  <g transform="translate(490 40)">
+    <rect width="110" height="80" rx="16" fill="#31D5FF"/><text x="0" y="112">#31D5FF</text>
+  </g>
+  <g transform="translate(640 40)">
+    <rect width="110" height="80" rx="16" fill="#FF9500"/><text x="0" y="112">#FF9500</text>
+  </g>
+</svg>

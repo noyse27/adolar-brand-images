@@ -1,0 +1,49 @@
+/* Adolar MZ-1 state hooks for inline SVG */
+
+.adolar-mz1 {
+  width: 96px;
+  height: auto;
+}
+
+.adolar-mz1 #rocket-mz1 {
+  transform-origin: 150px 170px;
+  animation: mz1-idle 3.4s ease-in-out infinite;
+}
+
+.adolar-mz1[data-state="loading"] .flame-outer,
+.adolar-mz1[data-state="loading"] .flame-inner {
+  transform-origin: 136px 278px;
+  animation: mz1-pulse 900ms ease-in-out infinite;
+}
+
+.adolar-mz1[data-state="playing"] .flame-outer,
+.adolar-mz1[data-state="playing"] .flame-inner {
+  transform-origin: 136px 278px;
+  animation: mz1-pulse 520ms ease-in-out infinite;
+}
+
+.adolar-mz1[data-state="paused"] .flame-outer,
+.adolar-mz1[data-state="paused"] .flame-inner {
+  opacity: .15;
+  transform: scale(.7);
+}
+
+.adolar-mz1[data-state="error"] #rocket-mz1 {
+  animation: none;
+  transform: rotate(12deg) translate(8px, 10px);
+}
+
+.adolar-mz1[data-state="error"] .flame-outer,
+.adolar-mz1[data-state="error"] .flame-inner {
+  opacity: .08;
+}
+
+@keyframes mz1-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes mz1-pulse {
+  0%, 100% { transform: scaleY(.82); opacity: .82; }
+  50% { transform: scaleY(1.16); opacity: 1; }
+}
