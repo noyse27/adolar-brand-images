@@ -1,0 +1,6 @@
+{
+  "sizes": [16, 24, 32, 48, 64, 128, 256, 512],
+  "variants": ["adolar", "radio", "disco", "tv", "player", "core"],
+  "source": "variants/<variant>/<variant>-icon.svg",
+  "output": "exports/png/<variant>/<variant>-icon-<size>.png"
+}
