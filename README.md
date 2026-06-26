@@ -44,7 +44,7 @@ Für finale Releases sollte zusätzlich eine Version erstellt werden, bei der Or
 Das animierte SVG versteht folgende Zustände über `data-state`:
 
 ```html
-<object data="animations/rocket-mz1-states.svg" type="image/svg+xml"></object>
+<object data="animations/rocket-mz1-state-machine.svg" type="image/svg+xml"></object>
 ```
 
 Oder direkt inline:

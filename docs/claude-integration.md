@@ -21,11 +21,11 @@ Die Silhouette bleibt immer gleich. Zustände werden nur über Bewegung, Flamme 
 
 ## Empfohlene HTML-Struktur
 
-Am besten wird `rocket-mz1-states.svg` inline eingebettet, nicht per `<img>`, weil CSS und `data-state` dann direkt funktionieren.
+Am besten wird `rocket-mz1-state-machine.svg` inline eingebettet, nicht per `<img>`, weil CSS und `data-state` dann direkt funktionieren.
 
 ```html
 <div class="adolar-brand-status" aria-label="Adolar Player Status">
-  <!-- Inhalt aus animations/rocket-mz1-states.svg inline einfügen -->
+  <!-- Inhalt aus animations/rocket-mz1-state-machine.svg inline einfügen -->
   <svg class="adolar-mz1" data-state="idle" viewBox="0 0 380 380" aria-hidden="true">
     ...
   </svg>
