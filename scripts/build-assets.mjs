@@ -19,15 +19,8 @@ const ROOT = process.cwd();
 const clean = process.argv.includes("--clean");
 
 const sizes = [16, 24, 32, 48, 64, 128, 256, 512];
-
-const variants = [
-  "adolar",
-  "radio",
-  "disco",
-  "tv",
-  "player",
-  "core"
-];
+const icoSizes = [16, 32, 48, 256];
+const skipped = [];
 
 async function exists(filePath) {
   try {
@@ -54,18 +47,64 @@ async function renderPng(svgPath, pngPath, width, height = width) {
     .toFile(pngPath);
 }
 
-async function copyIfExists(src, dest) {
-  if (await exists(src)) {
-    await ensureDir(path.dirname(dest));
-    await fs.copyFile(src, dest);
+async function readJson(filePath) {
+  return JSON.parse(await fs.readFile(filePath, "utf8"));
+}
+
+async function readVariants() {
+  const manifestPath = path.join(ROOT, "variants", "manifest.json");
+
+  if (!(await exists(manifestPath))) {
+    throw new Error(`Missing variant manifest: ${manifestPath}`);
   }
+
+  return Object.keys(await readJson(manifestPath));
+}
+
+async function writeIco(pngPaths, icoPath) {
+  const images = await Promise.all(
+    pngPaths.map(async ({ size, file }) => ({
+      size,
+      data: await fs.readFile(file)
+    }))
+  );
+
+  const headerSize = 6;
+  const entrySize = 16;
+  let imageOffset = headerSize + images.length * entrySize;
+  const header = Buffer.alloc(headerSize);
+  const entries = [];
+
+  header.writeUInt16LE(0, 0);
+  header.writeUInt16LE(1, 2);
+  header.writeUInt16LE(images.length, 4);
+
+  for (const image of images) {
+    const entry = Buffer.alloc(entrySize);
+    entry.writeUInt8(image.size === 256 ? 0 : image.size, 0);
+    entry.writeUInt8(image.size === 256 ? 0 : image.size, 1);
+    entry.writeUInt8(0, 2);
+    entry.writeUInt8(0, 3);
+    entry.writeUInt16LE(1, 4);
+    entry.writeUInt16LE(32, 6);
+    entry.writeUInt32LE(image.data.length, 8);
+    entry.writeUInt32LE(imageOffset, 12);
+    entries.push(entry);
+    imageOffset += image.data.length;
+  }
+
+  await ensureDir(path.dirname(icoPath));
+  await fs.writeFile(
+    icoPath,
+    Buffer.concat([header, ...entries, ...images.map((image) => image.data)])
+  );
 }
 
 async function buildVariantIcon(variant) {
   const svgPath = path.join(ROOT, "variants", variant, `${variant}-icon.svg`);
 
   if (!(await exists(svgPath))) {
-    console.warn(`Skipping ${variant}: missing ${svgPath}`);
+    skipped.push(`variant icon "${variant}" missing source SVG at ${svgPath}`);
     return;
   }
 
@@ -77,11 +116,12 @@ async function buildVariantIcon(variant) {
     );
   }
 
-  // Sharp cannot write multi-size ICO directly. We still generate a 256px png
-  // that can be converted to .ico by ImageMagick, Inkscape or a release job.
-  await copyIfExists(
-    path.join(ROOT, "exports", "png", variant, `${variant}-icon-256.png`),
-    path.join(ROOT, "exports", "ico", `${variant}-ico-source-256.png`)
+  await writeIco(
+    icoSizes.map((size) => ({
+      size,
+      file: path.join(ROOT, "exports", "png", variant, `${variant}-icon-${size}.png`)
+    })),
+    path.join(ROOT, "exports", "ico", `${variant}.ico`)
   );
 }
 
@@ -103,9 +143,12 @@ async function buildFavicons() {
 
 async function buildSocialPreview() {
   const svgPath = path.join(ROOT, "social", "github-social-preview.svg");
+  const variants = await readVariants();
 
   if (await exists(svgPath)) {
     await renderPng(svgPath, path.join(ROOT, "social", "github-social-preview.png"), 1280, 640);
+  } else {
+    skipped.push(`main social preview missing source SVG at ${svgPath}`);
   }
 
   for (const variant of variants) {
@@ -117,6 +160,8 @@ async function buildSocialPreview() {
         1280,
         640
       );
+    } else {
+      skipped.push(`social preview "${variant}" missing source SVG at ${variantSvg}`);
     }
   }
 }
@@ -153,6 +198,8 @@ async function writeManifest() {
 }
 
 async function main() {
+  const variants = await readVariants();
+
   if (clean) {
     await removeDir(path.join(ROOT, "exports", "png"));
     await removeDir(path.join(ROOT, "exports", "ico"));
@@ -166,6 +213,10 @@ async function main() {
   await buildFavicons();
   await buildSocialPreview();
   await writeManifest();
+
+  for (const item of skipped) {
+    console.warn(`Skipped optional asset: ${item}`);
+  }
 
   console.log("Adolar brand exports built.");
 }
