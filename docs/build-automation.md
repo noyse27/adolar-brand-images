@@ -1,6 +1,6 @@
-# Build / Export Automation v0.5.0
+# Build / Export Automation v0.6.0
 
-Dieses Release ergänzt das Brand-Repository um eine einfache Build-Automation.
+Dieses Release stabilisiert die Build-Automation und erzeugt echte ICO-Dateien ohne externe CLI-Tools.
 
 ## Ziel
 
@@ -21,6 +21,10 @@ npm run check
 npm run build
 npm run build:clean
 ```
+
+- `npm run check` prueft wichtige Source-Dateien, Variant-Quellen und Social-Preview-SVGs.
+- `npm run build` erzeugt PNGs, Favicons, ICOs und Social-Preview-PNGs aus SVGs.
+- `npm run build:clean` entfernt generierte Exportordner vor dem Neubau.
 
 ## Was wird erzeugt?
 
@@ -56,15 +60,17 @@ social/github-social-preview.png
 social/variants/<variant>-social-preview.png
 ```
 
-## ICO-Hinweis
+## ICO-Dateien
 
-Das Skript erzeugt aktuell ICO-Quellbilder als PNG:
+Das Skript schreibt PNG-basierte Multi-Image-ICO-Container direkt in Node:
 
 ```text
-exports/ico/<variant>-ico-source-256.png
+exports/ico/<variant>.ico
 ```
 
-Multi-Size-`.ico` kann später per ImageMagick, Inkscape oder einem separaten Release-Job erzeugt werden.
+Enthalten sind 16, 32, 48 und 256 px. Keine ImageMagick- oder Inkscape-Abhaengigkeit ist erforderlich.
+
+Fehlende optionale Quell-SVGs werden als klare `Skipped optional asset`-Warnung gemeldet. Varianten aus `variants/manifest.json` sollten vollstaendige SVG-Quellen besitzen.
 
 ## GitHub Actions
 

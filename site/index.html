@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adolar MZ-1 Brand Preview</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="page-header">
+      <img src="../logo/adolar-logo.svg" alt="Adolar logo" class="master-logo">
+      <p>Same rocket. Different mission. Same rocket. Different state.</p>
+    </header>
+
+    <main>
+      <section>
+        <h1>MZ-1 Master Assets</h1>
+        <div class="asset-grid">
+          <figure>
+            <img src="../rocket/rocket-mz1.svg" alt="MZ-1 rocket">
+            <figcaption>rocket/rocket-mz1.svg</figcaption>
+          </figure>
+          <figure>
+            <img src="../palette/colors.svg" alt="Adolar color palette">
+            <figcaption>palette/colors.svg</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section>
+        <h2>Project Variants</h2>
+        <div class="variant-grid" id="variantGrid"></div>
+      </section>
+
+      <section>
+        <h2>Animation States</h2>
+        <div class="state-grid" id="stateGrid"></div>
+      </section>
+
+      <section>
+        <h2>Exports</h2>
+        <ul class="file-list">
+          <li><code>exports/png/&lt;variant&gt;/&lt;variant&gt;-icon-&lt;size&gt;.png</code></li>
+          <li><code>exports/ico/&lt;variant&gt;.ico</code></li>
+          <li><code>favicons/</code></li>
+          <li><code>social/**/*.png</code></li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

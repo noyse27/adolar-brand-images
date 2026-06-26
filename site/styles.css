@@ -1,0 +1,96 @@
+:root {
+  color-scheme: light;
+  --ink: #15113D;
+  --muted: #5F6380;
+  --line: #D9CCFF;
+  --panel: #FFFFFF;
+  --wash: #F7F4FF;
+  --accent: #31D5FF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--wash);
+  color: var(--ink);
+  font-family: "Orbitron", "Segoe UI", sans-serif;
+}
+
+.page-header,
+main {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.page-header {
+  padding: 32px 0 20px;
+}
+
+.master-logo {
+  width: min(360px, 80vw);
+  display: block;
+}
+
+.page-header p {
+  margin: 16px 0 0;
+  color: var(--muted);
+}
+
+section {
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+
+h1,
+h2 {
+  margin: 0 0 16px;
+  letter-spacing: 0;
+}
+
+.asset-grid,
+.variant-grid,
+.state-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+figure {
+  margin: 0;
+  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+figure img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  display: block;
+}
+
+figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font: 13px/1.4 "Segoe UI", sans-serif;
+  overflow-wrap: anywhere;
+}
+
+.file-list {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.file-list li + li {
+  margin-top: 8px;
+}
+
+code {
+  color: var(--ink);
+}

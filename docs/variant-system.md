@@ -23,6 +23,8 @@ Neue Projekte bekommen keine neue Rakete. Sie bekommen:
 | Adolar Player | `#8B5CFF` | `▶` | WebMediaPlayer |
 | Adolar Core | `#7CFFB2` | `{}` | Core / Dev |
 
+Die Variantennamen kommen aus `variants/manifest.json`. Fuer jede dort gelistete Variante werden Icon-PNGs, ICOs und Social-Preview-PNGs gebaut, wenn die SVG-Quellen vorhanden sind.
+
 ## Namenslogik
 
 Der Dachname `ADOLAR` bleibt dominant. Der Projektname steht darunter oder daneben kleiner.
@@ -55,7 +57,16 @@ variants/<slug>/
   README.md
 ```
 
-Zusätzlich `variants/manifest.json` ergänzen.
+Zusätzlich `variants/manifest.json` und `social/variants/<slug>-social-preview.svg` ergänzen. Danach:
+
+```bash
+npm run check
+npm run build
+```
+
+## Source of Truth
+
+SVG-Dateien in `logo/`, `rocket/`, `animations/`, `variants/` und `social/` sind die Quellen. PNG, ICO, Favicons und Social-Preview-PNGs sind Exporte.
 
 ## Leitmotiv
 

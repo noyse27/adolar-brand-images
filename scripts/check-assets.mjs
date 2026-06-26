@@ -22,8 +22,14 @@ const requiredFiles = [
   "social/github-social-preview.svg",
   "docs/styleguide.md",
   "docs/build-automation.md",
+  "docs/pages.md",
+  "docs/release-checklist.md",
   "docs/variant-system.md",
-  "docs/animation-system.md"
+  "docs/animation-system.md",
+  "site/index.html",
+  "site/styles.css",
+  "site/app.js",
+  "RELEASE-v0.6.0.md"
 ];
 
 let failed = false;

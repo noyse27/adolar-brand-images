@@ -1,6 +1,6 @@
-# MZ-1 Animation System v0.4.0
+# MZ-1 Animation System
 
-Dieses Release macht die Rakete zu einer kleinen Zustandsanzeige für den Webplayer.
+Die MZ-1-Rakete kann als dezente Zustandsanzeige im Webplayer verwendet werden. Die Form bleibt immer gleich; nur Farbe, Bewegung und Flamme reagieren auf den Zustand.
 
 ## Dateien
 
@@ -29,7 +29,7 @@ Dieses Release macht die Rakete zu einer kleinen Zustandsanzeige für den Webpla
 
 ## Einbettung
 
-Die SVG sollte inline eingebettet werden, weil `data-state` dann direkt gesetzt werden kann.
+Die State-Machine-SVG ist die Source of Truth fuer Zustandslogik. Inline-Einbettung ist empfohlen, weil `data-state` dann direkt gesetzt werden kann.
 
 ```html
 <svg class="adolar-mz1" data-state="idle" viewBox="0 0 380 380">
@@ -58,6 +58,14 @@ audio.addEventListener("error", () => rocket.dataset.state = "error");
 ## Reduced Motion
 
 Alle Animationen respektieren `prefers-reduced-motion: reduce`.
+
+## Preview
+
+Die statische Vorschau unter `site/` zeigt alle Zustands-SVGs:
+
+```text
+idle, loading, playing, paused, error, success
+```
 
 ## Design-Regeln
 
