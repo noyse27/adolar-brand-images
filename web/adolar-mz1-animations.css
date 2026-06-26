@@ -1,0 +1,19 @@
+/* Adolar MZ-1 Animation System v0.4.0 */
+.adolar-mz1 { width: var(--adolar-mz1-size, 96px); height: auto; display: block; }
+.adolar-mz1 #rocket-mz1 { transform-origin: 150px 170px; animation: mz1-idle 3.4s ease-in-out infinite; }
+.adolar-mz1 .flame-outer, .adolar-mz1 .flame-inner { transform-origin: 136px 278px; }
+.adolar-mz1[data-state="loading"] #rocket-mz1 { animation: mz1-idle 2.8s ease-in-out infinite; }
+.adolar-mz1[data-state="loading"] .flame-outer, .adolar-mz1[data-state="loading"] .flame-inner { animation: mz1-flame-pulse 900ms ease-in-out infinite; }
+.adolar-mz1[data-state="playing"] #rocket-mz1 { animation: mz1-playing 1.8s ease-in-out infinite; }
+.adolar-mz1[data-state="playing"] .flame-outer, .adolar-mz1[data-state="playing"] .flame-inner { animation: mz1-flame-pulse 520ms ease-in-out infinite; }
+.adolar-mz1[data-state="paused"] #rocket-mz1 { animation: mz1-idle 5s ease-in-out infinite; }
+.adolar-mz1[data-state="paused"] .flame-outer, .adolar-mz1[data-state="paused"] .flame-inner { opacity: .18; transform: scaleY(.62); }
+.adolar-mz1[data-state="error"] #rocket-mz1 { animation: mz1-error 420ms ease-out 1 both; }
+.adolar-mz1[data-state="error"] .flame-outer, .adolar-mz1[data-state="error"] .flame-inner { opacity: .08; transform: scaleY(.45); }
+.adolar-mz1[data-state="success"] #rocket-mz1 { animation: mz1-success 950ms cubic-bezier(.22,1,.36,1) 1 both; }
+@keyframes mz1-idle { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-7px) rotate(-.7deg); } }
+@keyframes mz1-playing { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-5px) rotate(.8deg); } }
+@keyframes mz1-flame-pulse { 0%, 100% { transform: scaleY(.82); opacity: .82; } 50% { transform: scaleY(1.18); opacity: 1; } }
+@keyframes mz1-error { 0% { transform: translate(0, 0) rotate(0deg); } 35% { transform: translate(8px, 8px) rotate(13deg); } 100% { transform: translate(7px, 10px) rotate(11deg); } }
+@keyframes mz1-success { 0% { transform: translateY(0) rotate(0deg); } 42% { transform: translate(12px, -22px) rotate(-5deg); } 100% { transform: translateY(0) rotate(0deg); } }
+@media (prefers-reduced-motion: reduce) { .adolar-mz1 #rocket-mz1, .adolar-mz1 .flame-outer, .adolar-mz1 .flame-inner { animation: none !important; transition: none !important; } }

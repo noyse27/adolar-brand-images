@@ -1,0 +1,8 @@
+{
+  "idle": "Player bereit",
+  "loading": "Stream lädt",
+  "playing": "Wiedergabe läuft",
+  "paused": "Pausiert",
+  "error": "Fehler",
+  "success": "Erfolg"
+}
