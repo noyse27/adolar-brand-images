@@ -9,6 +9,6 @@
     "check": "node scripts/check-assets.mjs"
   },
   "devDependencies": {
-    "sharp": "^0.33.5"
+    "sharp": "^0.35.4"
   }
 }
